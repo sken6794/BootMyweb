@@ -1,6 +1,7 @@
 package com.coding404.myweb.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,7 +62,7 @@ public class ProductController {
 	public String registForm(ProductVO vo, RedirectAttributes re, @RequestParam("file") List<MultipartFile> list ) {//업로드 기능 추가
 		
 		//1. 빈 객체 검사
-		list = list.stream().filter(t->t.isEmpty()==false).toList();
+		list = list.stream().filter(t->t.isEmpty()==false).collect(Collectors.toList());
 		
 		//2. 확장자 검사 (img 유형의 파일만 받아야 함 영상이나 엑셀파일 기타 다른 파일은 안됨)
 		for(MultipartFile file : list) {
